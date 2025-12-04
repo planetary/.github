@@ -1,0 +1,19 @@
+{
+  "name": "@planetary/tailwind-config",
+  "version": "1.0.0",
+  "description": "Shared Tailwind CSS configuration preset for Planetary projects",
+  "main": "preset.js",
+  "files": [
+    "preset.js"
+  ],
+  "peerDependencies": {
+    "tailwindcss": "^3.4.0",
+    "@tailwindcss/typography": "^0.5.13"
+  },
+  "keywords": [
+    "tailwindcss",
+    "tailwind-preset",
+    "planetary"
+  ],
+  "license": "MIT"
+}

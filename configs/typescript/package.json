@@ -1,0 +1,20 @@
+{
+  "name": "@planetary/typescript-config",
+  "version": "1.0.0",
+  "description": "Shared TypeScript configuration for Planetary projects",
+  "main": "base.json",
+  "files": [
+    "next.json",
+    "base.json"
+  ],
+  "peerDependencies": {
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "typescript",
+    "tsconfig",
+    "planetary",
+    "nextjs"
+  ],
+  "license": "MIT"
+}

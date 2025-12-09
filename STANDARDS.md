@@ -747,6 +747,49 @@ async redirects() {
 - Trailing slash consistency: Choose one (with or without) and stick to it
 - Avoid deep nesting: `/blog/post-title` ✅ not `/blog/2024/12/03/post-title` ❌
 
+### Dynamic Redirect Updates (Without Redeploy)
+
+When editors need redirect changes to go live without waiting for a developer to redeploy:
+
+**Option 1: Vercel Deploy Hook + Sanity Webhook (Recommended)**
+
+Best for: Infrequent updates (weekly/monthly), acceptable 2-5 min delay
+
+Setup:
+1. Create Deploy Hook in Vercel: Project Settings → Git → Deploy Hooks
+2. Create Sanity Webhook filtered to `_type == "redirect"` pointing to the deploy hook URL
+
+Pros: Zero code changes, zero runtime overhead, battle-tested
+Cons: 2-5 minute delay for changes to go live
+
+**Option 2: Middleware-Based Runtime Redirects**
+
+Best for: Frequent updates (daily), need near-instant changes (~60s)
+
+Implementation: Fetch redirects from Sanity in middleware with in-memory caching.
+
+Reference implementation: `planetary/177milkstreet` branch `feature/MIL2-311-dynamic-redirects-middleware`
+
+Key considerations:
+- Adds ~1-3ms latency per request (cache hit)
+- Requires fallback logic if Sanity is unreachable
+- Use Map for O(1) lookups with large redirect lists
+- Preserve correct HTTP status codes (301/307) for SEO
+
+When to use middleware approach:
+- Redirects change daily or more frequently
+- Instant updates are business-critical
+- Vercel Firewall can't handle emergency cases
+
+**Decision Guide:**
+
+| Factor | Deploy Hook | Middleware |
+|--------|-------------|------------|
+| Update delay | 2-5 minutes | ~60 seconds |
+| Code changes | None | New caching layer |
+| Runtime risk | None | Sanity dependency |
+| Maintenance | None | Cache logic |
+
 ---
 
 ## SHARED TESTING STANDARDS

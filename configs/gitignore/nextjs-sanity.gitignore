@@ -1,0 +1,77 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules/
+/studio/node_modules
+/.pnp
+.pnp.js
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+/dist
+/studio/dist
+
+# Storybook
+public/storybook/
+storybook-static
+
+# Misc
+.DS_Store
+.idea/
+*.iml
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files
+.env
+.env*.local
+.env.backup
+!.env.example
+studio/.env.development
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Sanity data used for testing queries and backups
+data
+sanity.json
+
+# Plugin testing
+.yalc
+
+# CSV exports
+*.csv
+
+# AI Agent Files
+.temp/
+CLAUDE.md
+.claude/
+.cursor/
+.aider*
+.continue/
+copilot-*
+.serena/
+.codeium/
+AGENTS.md

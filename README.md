@@ -92,6 +92,15 @@ cp configs/playwright/critical-paths.spec.ts ./tests/critical-paths.spec.ts
 # Customize for your project's pages and routes
 ```
 
+### Gitignore
+
+```bash
+# Copy the Next.js + Sanity gitignore template
+cp configs/gitignore/nextjs-sanity.gitignore ./.gitignore
+
+# Includes: dependencies, build outputs, env files, IDE configs, and AI agent files
+```
+
 ## Installation Options
 
 ### Option 1: Reference from .github repo (Recommended for local development)

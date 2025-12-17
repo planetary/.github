@@ -77,6 +77,93 @@
 }
 ```
 
+#### Data Migration Process
+
+When schema changes require data migrations (adding fields, restructuring content, etc.), follow this process to ensure zero data loss and minimal downtime.
+
+![Data Migration Flow](../assets/data-migration-flow.svg)
+
+**⚠️ CRITICAL: Implement a content freeze before starting the migration process. Notify editors and stakeholders that no content changes should be made until migration is complete.**
+
+##### Migration Steps
+
+1. **Export Production Dataset**
+   ```bash
+   sanity dataset export production ./backups/production-YYYY-MM-DD.tar.gz
+   ```
+
+2. **Replace Development Dataset with Production**
+   ```bash
+   # Delete current development dataset
+   sanity dataset delete development
+   # Import production data into development
+   sanity dataset import ./backups/production-YYYY-MM-DD.tar.gz development
+   ```
+
+3. **Apply Migrations in Development**
+   - Run migration scripts against the development dataset
+   - Test schema changes and data transformations
+   ```bash
+   sanity exec ./migrations/your-migration.ts --with-user-token
+   ```
+
+4. **Local QA**
+   - Test all content types and queries
+   - Verify data integrity
+   - Test frontend functionality against development dataset
+
+5. **Point Staging to Development Dataset**
+   - Update staging environment variables:
+     ```bash
+     NEXT_PUBLIC_SANITY_DATASET=development
+     ```
+   - Redeploy staging environment
+
+6. **Staging QA**
+   - Full QA pass on staging environment
+   - Verify all functionality with migrated data
+   - Get stakeholder approval
+
+7. **Point Production to Development Dataset**
+   - Update production environment variables:
+     ```bash
+     NEXT_PUBLIC_SANITY_DATASET=development
+     ```
+   - Redeploy production environment
+
+8. **Production QA**
+   - Verify production is working with migrated data
+   - Monitor for any issues
+
+9. **Sync Back to Production Dataset**
+   ```bash
+   # Export the migrated development dataset
+   sanity dataset export development ./backups/development-migrated-YYYY-MM-DD.tar.gz
+   # Replace production dataset with migrated data
+   sanity dataset delete production
+   sanity dataset import ./backups/development-migrated-YYYY-MM-DD.tar.gz production
+   ```
+
+10. **Restore Correct Environment Configuration**
+    - Update environment variables back to normal:
+      ```bash
+      NEXT_PUBLIC_SANITY_DATASET=production
+      ```
+    - Redeploy all environments
+
+11. **Final Production QA**
+    - Full QA pass on production
+    - Verify all content and functionality
+    - **End content freeze** - notify editors they can resume work
+
+##### Best Practices
+
+- **Always backup before any destructive operations**
+- **Never skip the content freeze** - data created during migration will be lost
+- **Document all migration scripts** in the `/migrations` directory
+- **Test migrations on development first** - never run untested migrations on production
+- **Keep backup archives** for at least 30 days after successful migration
+
 ---
 
 ## ❌ DO NOT USE (Removed from Standards)

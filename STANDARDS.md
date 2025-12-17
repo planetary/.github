@@ -19,6 +19,7 @@
 | [AI Usage](./standards/ai-usage.md) | AI guidelines, .gitignore for AI files, best practices |
 | [Configuration](./standards/configuration.md) | Environment variables, config files |
 | [Deployment](./standards/deployment.md) | Vercel, pre-deploy checklist |
+| [Sanity Migration](./standards/sanity-migration.md) | CMS data migration process, rollback procedures |
 
 ---
 

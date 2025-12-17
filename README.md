@@ -9,6 +9,7 @@ Organization-wide templates, configurations, and guidelines for Planetary reposi
 | [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) | PR template applied to all repos |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Author and reviewer guidelines |
 | [`STANDARDS.md`](STANDARDS.md) | Complete agency standards documentation |
+| [`standards/sanity-migration.md`](standards/sanity-migration.md) | Sanity CMS data migration process |
 | [`configs/`](configs/) | Shared configuration files for all projects |
 
 ## Shared Configurations

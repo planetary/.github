@@ -60,7 +60,7 @@ deps/update-nextjs
 
 [optional body]
 
-[optional Linear reference]
+[optional issue reference]
 ```
 
 ### Types
@@ -90,7 +90,7 @@ git commit -m "WIP"
 - Keep commits focused (one logical change per commit)
 - First line max 72 characters
 - Use present tense ("add feature" not "added feature")
-- Reference Linear issues: `Closes LINEAR-123`
+- Reference issues: `Closes #123` or `Closes PROJ-123`
 - **NEVER** add co-author lines or "Generated with Claude Code"
 - **NEVER** add "claude" to commit messages
 
@@ -107,7 +107,7 @@ We use the shared template from `https://github.com/planetary/.github`
 ```
 
 ### Our PR Template Includes
-- **Ticket**: Link to Linear issue
+- **Ticket**: Link to related issue
 - **Summary**: Problem, Solution, How it works
 - **Testing/QA Steps**: Step-by-step verification instructions
 - **Acceptance Criteria**: Definition of "done"

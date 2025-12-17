@@ -22,7 +22,7 @@ Every PR must include:
 
 | Section | What to include |
 |---------|-----------------|
-| **Ticket link** | Link to the Linear issue |
+| **Ticket link** | Link to the related issue |
 | **Summary** | The problem, what you changed, and how the solution works |
 | **Testing steps** | Exact steps to verify the change, including accounts/URLs if relevant |
 | **Acceptance criteria** | What "done" means for this change |

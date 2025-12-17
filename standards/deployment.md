@@ -56,7 +56,7 @@ Before merging to `main`:
 - [ ] No console errors in browser
 - [ ] Tested on mobile/tablet
 - [ ] Analytics tracking verified (if changes)
-- [ ] Linear issue updated
+- [ ] Related issue updated
 
 ---
 

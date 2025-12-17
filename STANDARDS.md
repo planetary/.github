@@ -1,8 +1,7 @@
 # Planetary Agency Standards
 
 > **Last Updated**: 2025-12-11
-> **Status**: Draft - Awaiting Final Approval
-> **Owner**: Director of Technology (Chris)
+> **Status**: Active
 
 ---
 
@@ -69,15 +68,9 @@ copilot-*
 
 ## Questions or Feedback?
 
-**For Standards Questions**:
-- Create issue in `planetary/.github` repo
-- Tag @lead-engineer or @director-tech
-- Discuss in #engineering Slack channel
-
-**For Project-Specific Implementation**:
-- Create Linear ticket in project board
-- Reference this standards doc
-- Tag appropriate team members
+- Create an issue in this repository
+- Open a pull request with proposed changes
+- Reference this standards doc in discussions
 
 ---
 

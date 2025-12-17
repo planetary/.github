@@ -103,18 +103,25 @@ cp configs/gitignore/nextjs-sanity.gitignore ./.gitignore
 
 ## Installation Options
 
-### Option 1: Reference from .github repo (Recommended for local development)
+### Option 1: Install from GitHub Packages (Recommended)
 
 ```json
 // package.json
 {
   "devDependencies": {
-    "@planetary/eslint-config": "file:../.github/configs/eslint",
-    "@planetary/prettier-config": "file:../.github/configs/prettier",
-    "@planetary/typescript-config": "file:../.github/configs/typescript",
-    "@planetary/tailwind-config": "file:../.github/configs/tailwind"
+    "@planetary/eslint-config": "^1.0.0",
+    "@planetary/prettier-config": "^1.0.0",
+    "@planetary/typescript-config": "^1.0.0",
+    "@planetary/tailwind-config": "^1.0.0"
   }
 }
+```
+
+Configure npm to use GitHub Packages for the `@planetary` scope:
+
+```bash
+# .npmrc
+@planetary:registry=https://npm.pkg.github.com
 ```
 
 ### Option 2: Copy configs directly (Alternative)
@@ -146,6 +153,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on updating these shared r
 ## Questions?
 
 For standards questions or implementation help:
-- Create an issue in this repo
-- Ask in #engineering Slack channel
-- Tag @lead-engineer or @director-tech
+- Create an issue in this repository
+- Open a pull request with proposed changes

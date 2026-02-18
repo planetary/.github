@@ -46,7 +46,7 @@ This RFC proposes a shared standard that is tool-agnostic, incident-informed, an
 
 These are the shared mental models for how we think about AI-assisted development at Planetary. They're tool-agnostic — they apply whether you're using Claude Code, Cursor, Copilot, or anything else.
 
-For more depth on these ideas, including detailed examples: [AI-Assisted Development: A Senior Developer's Field Guide](https://helrabelo.dev/blog/ai-assisted-development).
+For more depth on these ideas, including detailed examples: [How I Actually Use Claude Code](https://www.helrabelo.dev/blog/how-i-actually-use-claude-code).
 
 ### The 70/30 Split
 

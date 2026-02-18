@@ -1,0 +1,41 @@
+# ==================================================
+# AI Tool Configuration
+# ==================================================
+# These files are developer-local AI tool configs.
+# They should not be committed to the repository.
+#
+# To use: copy these lines into your project's .gitignore
+# See: standards/ai-assisted-development.md
+# ==================================================
+
+# Claude Code
+CLAUDE.md
+.claude/
+
+# Cursor
+.cursorrules
+.cursor/
+
+# Aider
+.aider*
+
+# Continue
+.continue/
+
+# Codeium / Windsurf
+.codeium/
+
+# Serena
+.serena/
+
+# GitHub Copilot (local overrides)
+copilot-*
+
+# Microsoft AGENTS.md
+AGENTS.md
+
+# Tool-agnostic context file
+ai-context.md
+
+# AI tool temporary files
+.temp/

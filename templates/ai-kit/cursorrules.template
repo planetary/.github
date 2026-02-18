@@ -1,0 +1,83 @@
+# Project Name — Cursor Rules
+
+> Copy this file to your project root as `.cursorrules` and fill in the sections below.
+> Delete this instruction block and any sections that don't apply.
+
+## Safety Rules
+
+These rules are non-negotiable and apply to all AI-assisted code generation.
+
+### Git Safety
+- NEVER run destructive git commands (checkout --, restore, reset, clean, stash drop, push --force) without explicit permission.
+- NEVER push to remote repositories without explicit permission.
+- NEVER discard uncommitted changes. If the build fails or there are conflicts, report the issue and ask how to proceed.
+
+### Code Honesty
+- NEVER claim code works unless it has been executed and verified.
+- NEVER imply code is "ready" or "complete" without testing.
+- Always state when code has not been tested.
+- Always warn about assumptions (e.g., "This assumes [X] exists").
+- Writing tests is NOT the same as running tests.
+
+### File Safety
+- NEVER delete files without permission.
+- NEVER add AI attribution to commits, PRs, or code comments.
+- Do not add docstrings, comments, or type annotations to code that wasn't changed.
+- Do not add features, refactoring, or "improvements" beyond what was asked.
+
+---
+
+## Dev Commands
+
+<!-- Fill in the commands developers use daily -->
+
+Install: `npm ci`
+Dev: `npm run dev`
+Build: `npm run build`
+Test: `npm test`
+Lint: `npm run lint`
+Type check: `tsc --noEmit`
+
+## Architecture
+
+<!-- Describe the high-level architecture -->
+
+- Framework:
+- Routing:
+- State management:
+- Styling:
+- CMS / Backend:
+- Deployment:
+
+## Project Structure
+
+<!-- List key directories and their purpose -->
+
+```
+src/
+├── components/    #
+├── pages/         #
+├── lib/           #
+├── styles/        #
+└── utils/         #
+```
+
+## Key Files
+
+<!-- List files important for understanding the project -->
+
+## Conventions
+
+- Commit format: Conventional commits (feat:, fix:, chore:)
+- Branch naming:
+- Component patterns:
+- Testing approach:
+
+## Code Style
+
+<!-- Project-specific code style rules for Cursor to follow -->
+
+- Prefer existing dependencies over adding new ones.
+- Keep changes minimal and focused on the task at hand.
+- Match existing patterns in the codebase.
+- Every change must pass the build before committing.

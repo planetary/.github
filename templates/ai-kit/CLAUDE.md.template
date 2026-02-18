@@ -1,0 +1,115 @@
+# Project Name
+
+> Copy this file to your project root as `CLAUDE.md` and fill in the sections below.
+> Delete this instruction block and any sections that don't apply.
+
+## Safety Rules
+
+These rules are non-negotiable. See [AI-Assisted Development Standards](https://github.com/planetary/.github/blob/main/standards/ai-assisted-development.md) for full context.
+
+### Destructive Git Commands Are Forbidden
+
+The following commands must never be run without explicit developer permission:
+
+- `git checkout --` on any file
+- `git restore` on any file
+- `git reset` in any form
+- `git clean`
+- `git stash drop`
+- `git push --force`
+
+Do not revert uncommitted changes for any reason. If the build fails, if there are merge conflicts, or if changes seem problematic, **report the issue and ask the developer how to proceed**.
+
+### Honesty About Untested Code
+
+- Never claim code works if it has not been executed.
+- Never imply code is "ready" or "complete" without verification.
+- State explicitly: "I have not tested this yet."
+- Warn about assumptions: "This assumes [X] exists."
+- If tests were written but not run, say so clearly.
+
+### No Unauthorized Actions
+
+- Never push code to remote repositories without explicit permission.
+- Never create, close, or comment on PRs or issues without permission.
+- Never add AI attribution to commit messages, PR descriptions, or code comments.
+- Never delete files without moving them to a safe location first and getting approval.
+
+---
+
+## Dev Commands
+
+<!-- Fill in the commands developers use daily -->
+
+```bash
+# Install dependencies
+npm ci
+
+# Start development server
+npm run dev
+
+# Build
+npm run build
+
+# Type check
+tsc --noEmit
+
+# Run tests
+npm test
+
+# Lint
+npm run lint
+```
+
+## Architecture
+
+<!-- Describe the high-level architecture: framework, routing, state management, etc. -->
+
+- **Framework:**
+- **Routing:**
+- **State management:**
+- **Styling:**
+- **CMS / Backend:**
+- **Deployment:**
+
+## Project Structure
+
+<!-- List the key directories and their purpose -->
+
+```
+src/
+├── components/    #
+├── pages/         #
+├── lib/           #
+├── styles/        #
+└── utils/         #
+```
+
+## Key Files
+
+<!-- List files that are important for understanding the project -->
+
+| File | Purpose |
+|------|---------|
+| | |
+
+## Environment Variables
+
+<!-- List required env vars (DO NOT include actual values) -->
+
+| Variable | Purpose | Where to Get It |
+|----------|---------|----------------|
+| | | |
+
+## Conventions
+
+<!-- Project-specific patterns and conventions -->
+
+- **Commit format:** Conventional commits (`feat:`, `fix:`, `chore:`)
+- **Branch naming:**
+- **Component patterns:**
+- **Testing approach:**
+
+## Current Sprint / Active Work
+
+<!-- Optional: context about what's currently being worked on -->

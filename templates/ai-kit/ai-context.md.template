@@ -1,0 +1,85 @@
+# Project Name — AI Context
+
+> This is a tool-agnostic context file for AI-assisted development.
+> Copy it to your project root as `ai-context.md` and fill in the sections.
+> It can be used as input to any AI tool that accepts project context.
+> Delete this instruction block when done.
+
+---
+
+## Safety Rules
+
+These rules apply regardless of which AI tool you use. See the full rationale in the [AI-Assisted Development Standards](https://github.com/planetary/.github/blob/main/standards/ai-assisted-development.md).
+
+1. **No destructive git** — Never run checkout --, restore, reset, clean, stash drop, or force push without explicit permission.
+2. **No untested claims** — Never claim code works without executing it. State assumptions clearly.
+3. **No unauthorized push** — Never push, create PRs, or post comments without permission.
+4. **No AI attribution** — No AI references in commits, PRs, or code comments.
+5. **No file deletion** — Never delete files without safe backup and permission.
+
+---
+
+## Project Overview
+
+**Name:**
+**Description:**
+**Repository:**
+**Team:**
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | |
+| Language | |
+| Styling | |
+| State Management | |
+| CMS / Backend | |
+| Testing | |
+| Deployment | |
+
+## Dev Commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm ci` | Install dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm test` | Run tests |
+| `npm run lint` | Lint code |
+
+## Project Structure
+
+```
+src/
+├── components/    #
+├── pages/         #
+├── lib/           #
+├── styles/        #
+└── utils/         #
+```
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| | |
+
+## Architecture Notes
+
+<!-- High-level decisions, patterns, and conventions that AI tools should know about -->
+
+## Environment Variables
+
+<!-- List required env vars — DO NOT include actual values -->
+
+| Variable | Purpose |
+|----------|---------|
+| | |
+
+## Conventions
+
+- Commits: Conventional commits (feat:, fix:, chore:)
+- Branches:
+- Components:
+- Testing:

@@ -8,6 +8,9 @@ Organization-wide template and guidelines for Planetary repositories.
 |------|---------|
 | [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) | PR template applied to all repos |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Author and reviewer guidelines |
+| [`standards/ai-assisted-development.md`](standards/ai-assisted-development.md) | AI-assisted development standards (RFC) |
+| [`guides/`](guides/) | Workflow guides for AI-assisted development |
+| [`templates/ai-kit/`](templates/ai-kit/) | Starter templates for AI tool configuration |
 
 ## How It Works
 

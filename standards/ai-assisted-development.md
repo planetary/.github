@@ -10,7 +10,7 @@
 ## Table of Contents
 
 1. [Why We Need This](#1-why-we-need-this)
-2. [Philosophy](#2-philosophy)
+2. [Mental Models](#2-mental-models)
 3. [Layered Configuration](#3-layered-configuration)
 4. [Safety Rules (Non-Negotiable)](#4-safety-rules-non-negotiable)
 5. [Code Quality Standards](#5-code-quality-standards)
@@ -18,8 +18,9 @@
 7. [Commit & PR Standards](#7-commit--pr-standards)
 8. [The AI Kit](#8-the-ai-kit)
 9. [External Repos Strategy](#9-external-repos-strategy)
-10. [What Comes Next](#10-what-comes-next)
-11. [Appendix: Tool-Specific Notes](#11-appendix-tool-specific-notes)
+10. [Workflow Guides](#10-workflow-guides)
+11. [What Comes Next](#11-what-comes-next)
+12. [Appendix: Tool-Specific Notes](#12-appendix-tool-specific-notes)
 
 ---
 
@@ -41,28 +42,104 @@ This RFC proposes a shared standard that is tool-agnostic, incident-informed, an
 
 ---
 
-## 2. Philosophy
+## 2. Mental Models
+
+These are the shared mental models for how we think about AI-assisted development at Planetary. They're tool-agnostic — they apply whether you're using Claude Code, Cursor, Copilot, or anything else.
+
+For more depth on these ideas, including detailed examples: [AI-Assisted Development: A Senior Developer's Field Guide](https://helrabelo.dev/blog/ai-assisted-development).
 
 ### The 70/30 Split
 
-AI tools are most effective when the developer provides 70% of the direction and the AI contributes 30% of the execution. The ratio isn't literal — it's a mental model. You remain the architect, the reviewer, and the person accountable. The AI is an accelerator, not an autopilot.
+You provide 70% of the direction. The AI contributes 30% of the execution. The ratio isn't literal — it's a mindset. You are the architect, the reviewer, and the person accountable. The AI is an accelerator, not an autopilot.
 
 When the ratio flips — when you're accepting code you don't understand, skipping reviews because "the AI wrote it," or trusting output you haven't verified — that's when incidents happen.
 
-### Tool-Agnostic Principles
+**What 70/30 looks like in practice:**
+- You define the approach before asking the AI to implement it.
+- You break the work into specific tasks, not "build the feature."
+- You read and understand every line before committing.
+- You make the architectural decisions; the AI handles the typing.
 
-These standards don't prescribe a specific tool. Claude Code, Cursor, Copilot, Windsurf, Aider — it doesn't matter. The principles are the same:
+### The Junior Developer
 
-1. **You are accountable for every line of code** that reaches a PR, regardless of who or what wrote it.
-2. **AI output is a draft**, never a finished product. It requires the same review as a junior developer's work.
-3. **Safety rules exist because of real incidents**, not theoretical concerns. They apply to all tools equally.
-4. **Configuration should be explicit and portable**, not implicit and per-machine.
+Treat AI output the way you'd treat a pull request from a talented but inexperienced junior developer. They're fast, they're eager, and they produce code that *looks* right. But:
 
-### The "Circular Saw" Analogy
+- They don't know the project's history or why things are done a certain way.
+- They'll solve the wrong problem if the prompt is ambiguous.
+- They'll over-engineer to show off instead of keeping it simple.
+- They won't tell you when they're guessing — they'll present everything with the same confidence.
+
+You wouldn't merge a junior's PR without reviewing it. You wouldn't let them push to main unsupervised. You wouldn't take their word that the code works without seeing it run. Same standard applies.
+
+### Context Is the Product
+
+The quality of AI output is directly proportional to the context you provide. A vague prompt produces vague code. A prompt with architecture context, file paths, naming conventions, and constraints produces code that fits.
+
+This is why the AI Kit exists. Five minutes spent filling in a CLAUDE.md or .cursorrules file pays for itself on the first task. Without context, every AI interaction starts from zero — the tool makes wrong assumptions, uses wrong patterns, and you spend more time correcting than you saved.
+
+**The hierarchy of context quality:**
+1. **Project config file** (CLAUDE.md, .cursorrules) — persistent, automatic, covers the whole project.
+2. **Task-specific prompt** — "Fix the z-index issue on the DTF mobile header, the header component is at `src/components/Header.tsx`."
+3. **No context** — "Fix the header." This produces guesswork.
+
+Invest in layers 1 and 2. Avoid layer 3.
+
+### Small Bites
+
+One task per prompt. One concern per commit. The moment you ask an AI tool to "build the whole feature," quality drops off a cliff.
+
+Large, multi-step prompts lead to:
+- Code you can't review effectively (too much to read)
+- Interleaved concerns that should be separate commits
+- Compounding errors where an early mistake cascades through everything
+- Difficulty reverting when something goes wrong
+
+**Break it down:**
+- "Add the API route for location search" — then review, test, commit.
+- "Add the autocomplete component that calls that route" — then review, test, commit.
+- "Wire the autocomplete into the header" — then review, test, commit.
+
+Three small, reviewable steps. Not one giant, unreviable blob.
+
+### The Feedback Loop
+
+Every AI interaction follows the same cycle: **prompt, review, refine, accept.**
+
+```
+┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│  Prompt  │────▶│  Review  │────▶│  Refine  │────▶│  Accept  │
+│          │     │          │     │          │     │          │
+└──────────┘     └─────┬────┘     └──────────┘     └──────────┘
+                       │                ▲
+                       │  Not right     │
+                       └────────────────┘
+```
+
+**Never skip "review."** The most common source of AI-related bugs is accepting output without reading it. The code looked plausible, the AI said it worked, so it went straight into a commit.
+
+If you find yourself on the third round of "refine" for the same piece of code, that's the signal to stop and write it yourself. AI tools are great at first drafts. They're bad at nuanced iteration on the same code.
+
+### Know When to Stop
+
+AI tools are not always faster. Recognize these situations:
+
+- **You're on round 3+ of corrections** for the same code block — write it yourself.
+- **The task requires deep project context** that would take longer to explain than to just do — do it yourself.
+- **The AI keeps making the same mistake** after clear corrections — it doesn't understand the constraint. Write it yourself.
+- **The code is security-sensitive** (auth, payments, data handling) — write it yourself and use the AI to review, not generate.
+
+Using AI tools well means knowing when *not* to use them. There's no shame in typing code manually. The goal is shipping good code, not maximizing AI usage.
+
+### The Circular Saw
 
 A circular saw makes a carpenter faster, not less careful. The safety guard doesn't slow the work down — it prevents the catastrophic mistake that ruins the project. Our safety rules are the guard.
 
-For more depth on this philosophy, including detailed examples and patterns: [AI-Assisted Development: A Senior Developer's Field Guide](https://helrabelo.dev/blog/ai-assisted-development) (Hel's blog post on the topic).
+These standards don't prescribe a specific tool. The principles are the same across all of them:
+
+1. **You are accountable for every line of code** that reaches a PR, regardless of who or what wrote it.
+2. **AI output is a draft**, never a finished product.
+3. **Safety rules exist because of real incidents**, not theoretical concerns.
+4. **Configuration should be explicit and portable**, not implicit and per-machine.
 
 ---
 
@@ -314,7 +391,22 @@ This is a last resort — project-level gitignore is preferred because it protec
 
 ---
 
-## 10. What Comes Next
+## 10. Workflow Guides
+
+The mental models above describe *how to think*. These workflow guides describe *how to do*. Each one walks through a common development scenario step by step, applying the mental models to a concrete task.
+
+| Guide | When to Use |
+|-------|-------------|
+| [AI-Assisted Bug Fix](../guides/ai-assisted-bug-fix.md) | Diagnosing and fixing a bug with AI assistance |
+| [AI-Assisted Feature Build](../guides/ai-assisted-feature-build.md) | Building a new feature from ticket to PR |
+| [AI-Assisted Code Review](../guides/ai-assisted-code-review.md) | Using AI as a review tool, not just a writing tool |
+| [Onboarding to a Codebase](../guides/onboarding-to-a-codebase.md) | Using AI to understand an unfamiliar project |
+
+These guides are opinionated starting points, not rigid procedures. Adapt them to the project and the situation.
+
+---
+
+## 11. What Comes Next
 
 This is an RFC — a starting point for discussion, not a finished policy. Here's what needs to happen next.
 
@@ -341,7 +433,7 @@ If approved:
 
 ---
 
-## 11. Appendix: Tool-Specific Notes
+## 12. Appendix: Tool-Specific Notes
 
 These notes help developers configure specific tools. The AI Kit templates handle most of this, but understanding the underlying mechanics is useful.
 
